@@ -10,6 +10,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -29,7 +30,7 @@ import static android.support.test.espresso.Espresso.onView;
 @LargeTest
 public class ExampleInstrumentedTest {
 
-    private String textShouldBe;
+    private String textBefore, textAfter;
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(
@@ -38,7 +39,8 @@ public class ExampleInstrumentedTest {
     @Before
     public void initValidString() {
         // Specify a valid string.
-        textShouldBe = "Not Changed";
+        textBefore = "Not Changed";
+        textAfter = "Changed!";
     }
 
     @Test
@@ -49,11 +51,23 @@ public class ExampleInstrumentedTest {
         assertEquals("com.example.jeffreykoretke.automationpractice", appContext.getPackageName());
     }
 
+    /**
+     * check intial state of textview
+     */
     @Test
     public void checkTextView(){
 
-        onView(withId(R.id.textView))
-                .check(matches(withText(textShouldBe)));
+        onView(withId(R.id.textView)).check(matches(withText(textBefore)));
 
+    }
+
+    /**
+     * click button and check that textview was updated with new text
+     */
+    @Test
+    public void clickButtonAndCheckTextView(){
+
+        onView(withId(R.id.change_text_btn)).perform(click());
+        onView(withId(R.id.textView)).check(matches(withText(textAfter)));
     }
 }
