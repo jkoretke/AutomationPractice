@@ -11,6 +11,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -30,7 +32,7 @@ import static android.support.test.espresso.Espresso.onView;
 @LargeTest
 public class ExampleInstrumentedTest {
 
-    private String textBefore, textAfter;
+    private String textBefore, textAfter, inputString;
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(
@@ -41,6 +43,7 @@ public class ExampleInstrumentedTest {
         // Specify a valid string.
         textBefore = "Not Changed";
         textAfter = "Changed!";
+        inputString = "TURTLE!";
     }
 
     @Test
@@ -69,5 +72,15 @@ public class ExampleInstrumentedTest {
 
         onView(withId(R.id.change_text_btn)).perform(click());
         onView(withId(R.id.textView)).check(matches(withText(textAfter)));
+    }
+
+    /**
+     * Enter text, click button and check that the text is displayed
+     */
+    @Test
+    public void inputOutputText(){
+        onView(withId(R.id.input_text)).perform(typeText(inputString), closeSoftKeyboard());
+        onView(withText("display text")).perform(click());
+        onView(withId(R.id.display_text_view)).check(matches(withText(inputString)));
     }
 }
