@@ -1,5 +1,6 @@
 package com.example.jeffreykoretke.automationpractice;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +10,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button changeTextButton, displayTextButton;
+    private Button changeTextButton, displayTextButton, chuckNorrisFactsButton;
     private TextView changeTextView, displayTextView;
     private EditText inputText;
 
@@ -38,5 +39,15 @@ public class MainActivity extends AppCompatActivity {
                 displayTextView.setText(inputText.getText());
             }
         });
+
+        chuckNorrisFactsButton = findViewById(R.id.chuck_norris_button);
+        chuckNorrisFactsButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(MainActivity.this, ChuckNorrisListController.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

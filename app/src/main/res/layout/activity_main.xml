@@ -41,6 +41,12 @@
         android:textSize="25pt"
         android:textColor="@color/colorPrimaryDark"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chuck_norris_button"
+        android:text="Chuck Norris FActs"/>
+
 
 
 </LinearLayout>
