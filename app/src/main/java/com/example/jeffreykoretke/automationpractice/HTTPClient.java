@@ -13,14 +13,19 @@ public class HTTPClient {
     private ChuckNorrisFact [] chuckNorrisFacts;
     private URL url;
 
-    public HTTPClient(URL url){
+    public HTTPClient(URL url) throws IOException{
         this.url = url;
+        populateChuckNorrisFacts();
     }
 
     private void populateChuckNorrisFacts() throws IOException{
         String json = getJson(url);
         Gson gson = new Gson();
         chuckNorrisFacts = gson.fromJson(json, ChuckNorrisFact[].class);
+    }
+
+    public ChuckNorrisFact[] getChuckNorrisFacts() {
+        return chuckNorrisFacts;
     }
 
     private String getJson(URL url) throws IOException{

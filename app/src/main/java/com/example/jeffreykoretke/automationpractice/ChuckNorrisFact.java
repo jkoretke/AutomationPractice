@@ -16,6 +16,14 @@ public class ChuckNorrisFact {
         this.joke = joke;
     }
 
+    public String getPicURL(){
+        return picURL;
+    }
+
+    public String getJoke(){
+        return joke;
+    }
+
 
 
 
