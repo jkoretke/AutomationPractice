@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ChuckNorrisListController"></activity>
+        <activity android:name=".ChuckNorrisList"></activity>
     </application>
 
 </manifest>
